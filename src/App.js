@@ -4,11 +4,9 @@ import MainPage from "./components/Main-page/MainPage";
 import Box from "@mui/material/Box";
 
 const initialData = [
-  { id: 1, title: "hello world" },
-  { id: 2, title: "Spiderman " },
-  { id: 3, title: "no time to die" },
-  { id: 4, title: "billie elish" },
-  { id: 5, title: "guardians of the galaxy" },
+  { id: 1, title: "Batman" },
+  { id: 2, title: "Spiderman no way home" },
+  { id: 3, title: "guardians of the galaxy" },
 ];
 
 function App() {
