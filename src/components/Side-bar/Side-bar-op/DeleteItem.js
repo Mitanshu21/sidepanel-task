@@ -17,9 +17,10 @@ const DeleteItem = ({ deleteItem, deleteData, setSidebarStatus }) => {
               fontSize: "h4.fontSize",
               textTransform: "capitalize",
               margin: "20px",
+              color: "error.main",
             }}
           >
-            Are you sure?
+            are you sure want to delete?
           </Box>
           <Box
             sx={{

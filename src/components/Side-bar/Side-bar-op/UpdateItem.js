@@ -1,38 +1,35 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import InputField from "./InputField";
 
 const UpdateItem = ({ edit, updateData }) => {
   const [input, setInput] = useState(edit.value || "");
 
+  const submitHandler = (prop) => {
+    if (prop.value.trim().length === 0) return;
+    updateData(prop);
+  };
+
   return (
     <>
       {edit.id !== null && edit !== false && (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-          }}
+        <InputField
+          color="warning.main"
+          label="Edit title:"
+          input={input}
+          setInput={setInput}
         >
-          <TextField
-            type="text"
-            id="outlined-size-normal"
-            sx={{ margin: "10px" }}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
           <Button
             variant="contained"
             color="success"
             sx={{ padding: "15px" }}
             onClick={() => {
-              updateData({ id: edit.id, value: input });
+              submitHandler({ id: edit.id, value: input });
             }}
           >
             Update
           </Button>
-        </Box>
+        </InputField>
       )}
     </>
   );

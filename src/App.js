@@ -22,6 +22,9 @@ function App() {
           textTransform: "capitalize",
           textAlign: "center",
           margin: "40px",
+          fontWeight: "bold",
+          letterSpacing: 10,
+          color: "info.main",
         }}
       >
         SIDEPANEL

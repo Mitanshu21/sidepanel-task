@@ -1,22 +1,34 @@
 import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+
+import { styled } from "@mui/material/styles";
+
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+    padding: 15,
+    fontSize: 16,
+  },
+}));
+
 const TableMain = ({ data, setStatus, setEdit, setToDelete }) => {
   return (
-    <TableContainer component={Paper} align="center">
+    <TableContainer component={Paper}>
       <Table sx={{ maxWidth: "lg" }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Index</TableCell>
-            <TableCell align="center">Title</TableCell>
-            <TableCell align="center">Action</TableCell>
+            <StyledTableCell align="center">Index</StyledTableCell>
+            <StyledTableCell align="center">Title</StyledTableCell>
+            <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

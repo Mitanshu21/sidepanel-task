@@ -45,6 +45,7 @@ const MainPage = ({ data, setAllData }) => {
       <Button
         variant="contained"
         color="primary"
+        sx={{ marginBottom: "20px", float: "right" }}
         onClick={() => {
           setStatus("add");
           setNewTitle({ id: new Date().getTime(), value: "" });
