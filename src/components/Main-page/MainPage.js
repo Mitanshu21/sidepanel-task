@@ -11,25 +11,7 @@ const MainPage = ({ data, setAllData }) => {
   return (
     <Box sx={{ maxWidth: "lg", m: "auto" }}>
       {/* Sidebar */}
-      {status === "add" && (
-        <SidePanel
-          status={status}
-          setStatus={setStatus}
-          itemData={selected}
-          data={data}
-          setAllData={setAllData}
-        />
-      )}
-      {status === "update" && (
-        <SidePanel
-          status={status}
-          setStatus={setStatus}
-          itemData={selected}
-          data={data}
-          setAllData={setAllData}
-        />
-      )}
-      {status === "delete" && (
+      {status && (
         <SidePanel
           status={status}
           setStatus={setStatus}
