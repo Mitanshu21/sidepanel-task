@@ -6,9 +6,7 @@ import SidePanel from "../Side-bar/SidePanel";
 
 const MainPage = ({ data, setAllData }) => {
   const [status, setStatus] = useState(false);
-  const [edit, setEdit] = useState({ id: null, value: "" });
-  const [toDelete, setToDelete] = useState({ id: null, value: "" });
-  const [newTitle, setNewTitle] = useState({ id: null, value: "" });
+  const [selected, setSelected] = useState({ id: null, value: "" });
 
   return (
     <Box sx={{ maxWidth: "lg", m: "auto" }}>
@@ -17,7 +15,7 @@ const MainPage = ({ data, setAllData }) => {
         <SidePanel
           status={status}
           setStatus={setStatus}
-          itemData={newTitle}
+          itemData={selected}
           data={data}
           setAllData={setAllData}
         />
@@ -26,7 +24,7 @@ const MainPage = ({ data, setAllData }) => {
         <SidePanel
           status={status}
           setStatus={setStatus}
-          itemData={edit}
+          itemData={selected}
           data={data}
           setAllData={setAllData}
         />
@@ -35,7 +33,7 @@ const MainPage = ({ data, setAllData }) => {
         <SidePanel
           status={status}
           setStatus={setStatus}
-          itemData={toDelete}
+          itemData={selected}
           data={data}
           setAllData={setAllData}
         />
@@ -48,18 +46,13 @@ const MainPage = ({ data, setAllData }) => {
         sx={{ marginBottom: "20px", float: "right" }}
         onClick={() => {
           setStatus("add");
-          setNewTitle({ id: new Date().getTime(), value: "" });
+          setSelected({ id: new Date().getTime(), value: "" });
         }}
       >
         Add new Title
       </Button>
       {/* table of list of items and action button */}
-      <TableMain
-        data={data}
-        setStatus={setStatus}
-        setEdit={setEdit}
-        setToDelete={setToDelete}
-      />
+      <TableMain data={data} setStatus={setStatus} setSelected={setSelected} />
     </Box>
   );
 };

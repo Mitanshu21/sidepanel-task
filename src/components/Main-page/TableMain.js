@@ -1,9 +1,7 @@
 import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
 import { styled } from "@mui/material/styles";
-
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -20,7 +18,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const TableMain = ({ data, setStatus, setEdit, setToDelete }) => {
+const TableMain = ({ data, setStatus, setSelected }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ maxWidth: "lg" }} size="small" aria-label="a dense table">
@@ -52,7 +50,7 @@ const TableMain = ({ data, setStatus, setEdit, setToDelete }) => {
                   color="warning"
                   onClick={() => {
                     setStatus("update");
-                    setEdit({ id: row.id, value: row.title });
+                    setSelected({ id: row.id, value: row.title });
                   }}
                   sx={{ m: 0.5 }}
                 >
@@ -64,7 +62,7 @@ const TableMain = ({ data, setStatus, setEdit, setToDelete }) => {
                   sx={{ m: 0.5 }}
                   onClick={() => {
                     setStatus("delete");
-                    setToDelete({ id: row.id, value: row.title });
+                    setSelected({ id: row.id, value: row.title });
                   }}
                 >
                   Delete
