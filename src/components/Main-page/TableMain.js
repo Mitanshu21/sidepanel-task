@@ -8,6 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { crudAction } from "../../store/slice/crud-slice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -18,7 +20,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const TableMain = ({ data, setStatus, setSelected }) => {
+const TableMain = () => {
+  const dispatch = useDispatch();
+  const crudData = useSelector((state) => state.crud);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ maxWidth: "lg" }} size="small" aria-label="a dense table">
@@ -30,14 +35,14 @@ const TableMain = ({ data, setStatus, setSelected }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.length === 0 && (
+          {crudData.data.length === 0 && (
             <TableRow>
               <TableCell colSpan={3} align="center">
                 No data
               </TableCell>
             </TableRow>
           )}
-          {(data || []).map((row, index) => (
+          {(crudData.data || []).map((row, index) => (
             <TableRow
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -49,8 +54,10 @@ const TableMain = ({ data, setStatus, setSelected }) => {
                   variant="contained"
                   color="warning"
                   onClick={() => {
-                    setStatus("update");
-                    setSelected({ id: row.id, value: row.title });
+                    dispatch(crudAction.updateStatus("update"));
+                    dispatch(
+                      crudAction.currentItem({ id: row.id, title: row.title })
+                    );
                   }}
                   sx={{ m: 0.5 }}
                 >
@@ -61,8 +68,10 @@ const TableMain = ({ data, setStatus, setSelected }) => {
                   color="error"
                   sx={{ m: 0.5 }}
                   onClick={() => {
-                    setStatus("delete");
-                    setSelected({ id: row.id, value: row.title });
+                    dispatch(crudAction.updateStatus("delete"));
+                    dispatch(
+                      crudAction.currentItem({ id: row.id, title: row.title })
+                    );
                   }}
                 >
                   Delete

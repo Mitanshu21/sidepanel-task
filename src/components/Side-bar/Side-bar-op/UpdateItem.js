@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import InputField from "./InputField";
+import { useSelector } from "react-redux";
 
-const UpdateItem = ({ edit, updateData }) => {
-  const [input, setInput] = useState(edit.value || "");
+const UpdateItem = ({ updateData }) => {
+  const edit = useSelector((state) => state.crud.currentItem);
+  const [input, setInput] = useState(edit.title || "");
 
   const submitHandler = (prop) => {
-    if (prop.value.trim().length === 0) return;
+    if (prop.title.trim().length === 0) return;
     updateData(prop);
   };
 
@@ -24,7 +26,7 @@ const UpdateItem = ({ edit, updateData }) => {
             color="success"
             sx={{ padding: "15px" }}
             onClick={() => {
-              submitHandler({ id: edit.id, value: input });
+              submitHandler({ id: edit.id, title: input });
             }}
           >
             Update

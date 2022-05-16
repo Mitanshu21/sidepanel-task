@@ -28,7 +28,7 @@ const DeleteItem = ({ deleteItem, deleteData, setSidebarStatus }) => {
               margin: "20px",
             }}
           >
-            {deleteItem.value}
+            {deleteItem.title}
           </Box>
           <Box
             sx={{
@@ -41,7 +41,7 @@ const DeleteItem = ({ deleteItem, deleteData, setSidebarStatus }) => {
               color="error"
               sx={{ marginRight: "5px" }}
               onClick={() => {
-                deleteData({ id: deleteItem.id, value: deleteItem.value });
+                deleteData({ id: deleteItem.id, title: deleteItem.title });
               }}
             >
               Delete

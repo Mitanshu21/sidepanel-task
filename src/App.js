@@ -1,17 +1,8 @@
 import "./App.css";
-import { useState } from "react";
 import MainPage from "./components/Main-page/MainPage";
 import Box from "@mui/material/Box";
 
-const initialData = [
-  { id: 1, title: "Batman" },
-  { id: 2, title: "Spiderman no way home" },
-  { id: 3, title: "guardians of the galaxy" },
-];
-
 function App() {
-  const [state, setState] = useState(initialData);
-
   return (
     <>
       <Box
@@ -27,7 +18,7 @@ function App() {
       >
         SIDEPANEL
       </Box>
-      <MainPage data={state} setAllData={setState} />
+      <MainPage />
     </>
   );
 }

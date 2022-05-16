@@ -6,7 +6,7 @@ const AddItem = ({ newTitle, updateNewTitle }) => {
   const [input, setInput] = useState("");
 
   const submitHandler = (prop) => {
-    if (prop.value.trim().length === 0) return;
+    if (prop.title.trim().length === 0) return;
     updateNewTitle(prop);
   };
 
@@ -24,7 +24,7 @@ const AddItem = ({ newTitle, updateNewTitle }) => {
             color="success"
             sx={{ padding: "15px" }}
             onClick={() => {
-              submitHandler({ id: newTitle.id, value: input });
+              submitHandler({ id: newTitle.id, title: input });
             }}
           >
             Add

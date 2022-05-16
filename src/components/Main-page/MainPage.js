@@ -1,25 +1,21 @@
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TableMain from "./TableMain";
 import SidePanel from "../Side-bar/SidePanel";
+import { useSelector, useDispatch } from "react-redux";
+import { crudAction } from "../../store/slice/crud-slice";
+import UpdateModal from "../modal/UpdateModal";
 
 const MainPage = ({ data, setAllData }) => {
-  const [status, setStatus] = useState(false);
-  const [selected, setSelected] = useState({ id: null, value: "" });
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.crud.status);
 
   return (
     <Box sx={{ maxWidth: "lg", m: "auto" }}>
       {/* Sidebar */}
-      {status && (
-        <SidePanel
-          status={status}
-          setStatus={setStatus}
-          itemData={selected}
-          data={data}
-          setAllData={setAllData}
-        />
-      )}
+      {status === "add" && <SidePanel />}
+      {status === "delete" && <SidePanel />}
+      {status === "update" && <UpdateModal />}
 
       {/* new item button */}
       <Button
@@ -27,14 +23,16 @@ const MainPage = ({ data, setAllData }) => {
         color="primary"
         sx={{ marginBottom: "20px", float: "right" }}
         onClick={() => {
-          setStatus("add");
-          setSelected({ id: new Date().getTime(), value: "" });
+          dispatch(crudAction.updateStatus("add"));
+          dispatch(
+            crudAction.currentItem({ id: new Date().getTime(), title: "" })
+          );
         }}
       >
         Add new Title
       </Button>
       {/* table of list of items and action button */}
-      <TableMain data={data} setStatus={setStatus} setSelected={setSelected} />
+      <TableMain />
     </Box>
   );
 };
